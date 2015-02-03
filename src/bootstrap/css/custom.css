@@ -1,0 +1,79 @@
+h1, h2{
+  font-family: 'Montserrat', sans-serif;
+  text-transform: capitalize;
+}
+
+.wum-nav{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+}
+
+.wum-button{
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 100%;
+  color: white;
+  border-style: solid;
+  border-color: white;
+  border-width: 4px;
+  background-color: transparent;
+  cursor:pointer;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.wum-button-inverted{
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 100%;
+  color: #333;
+  border-style: solid;
+  border-color: #333;
+  border-width: 4px;
+  background-color: transparent;
+  cursor:pointer;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.head, .big{
+  font-family: 'Raleway', sans-serif;
+  border-width: 6px;
+  font-size: 50px;
+  text-transform: capitalize;
+}
+
+.wum-button:hover {
+  background-color: white;
+  color:grey;
+}
+
+.wum-button-inverted:hover {
+  background-color: #333;
+  color:white;
+}
+
+.fill {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+
+.fill .form-control {
+  width: 100%;
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+
+.fill .btn {
+  white-space:nowrap;
+  width:1%;
+  display: table-cell;
+}
