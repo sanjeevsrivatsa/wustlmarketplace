@@ -10,7 +10,7 @@ users.controller('UserSignupCtrl', ['$scope', '$http',
     $scope.signup = function(user) {
         $scope.master = angular.copy(user);
         $scope.master.toString();
-        $http.post(API_ROOT+USERS_ROOT, {name:$scope.master.name, username:$scope.master.email, email:$scope.master.email, password:$scope.master.password}).
+        $http.post(API_ROOT+USERS_ROOT, {first_name:$scope.master.first_name, last_name:$scope.master.last_name, display_name:$scope.master.display_name, username:$scope.master.email, email:$scope.master.email, password:$scope.master.password}).
           success(function(data, status, headers, config){
             //alert(JSON.stringify(data));
           }).
