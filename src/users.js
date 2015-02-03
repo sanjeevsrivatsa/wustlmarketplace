@@ -12,10 +12,10 @@ users.controller('UserSignupCtrl', ['$scope', '$http',
         $scope.master.toString();
         $http.post(API_ROOT+USERS_ROOT, {name:$scope.master.name, username:$scope.master.email, email:$scope.master.email, password:$scope.master.password}).
           success(function(data, status, headers, config){
-            alert(JSON.stringify(data));
+            //alert(JSON.stringify(data));
           }).
           error(function(data, status, headers, config){
-            alert(JSON.stringify(data));
+            //alert(JSON.stringify(data));
           });
     };
 
