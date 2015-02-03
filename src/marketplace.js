@@ -14,11 +14,11 @@ marketplaceApp.config(['$routeProvider', '$httpProvider',
     $routeProvider.
     when('/login', {
       templateUrl: 'partials/user-login.html',
-      controller: 'UserLogin'
+      controller: 'UserLoginCtrl'
     }).
     when('/signup', {
       templateUrl: 'partials/user-signup.html',
-      controller: 'UserRegistration'
+      controller: 'UserSignupCtrl'
     }).
     when('/items', {
       templateUrl: 'partials/item-list.html',
