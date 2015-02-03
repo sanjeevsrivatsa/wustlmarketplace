@@ -19,7 +19,7 @@ marketplaceApp.config(['$routeProvider', '$httpProvider',
     when('/signup', {
       templateUrl: 'partials/user-signup.html',
       controller: 'UserRegistration'
-    })
+    }).
     when('/items', {
       templateUrl: 'partials/item-list.html',
       controller: 'ItemListCtrl'
