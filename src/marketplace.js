@@ -5,12 +5,21 @@ var ITEMS = 'Items/'
 
 var marketplaceApp = angular.module('marketplaceApp', [
   'ngRoute',
-  'items'
+  'items',
+  'users'
 ]);
 
 marketplaceApp.config(['$routeProvider', '$httpProvider',
   function($routeProvider, $httpProvider) {
     $routeProvider.
+    when('/login', {
+      templateUrl: 'partials/user-login.html',
+      controller: 'UserLogin'
+    }).
+    when('/signup', {
+      templateUrl: 'partials/user-signup.html',
+      controller: 'UserRegistration'
+    })
     when('/items', {
       templateUrl: 'partials/item-list.html',
       controller: 'ItemListCtrl'
@@ -25,8 +34,6 @@ marketplaceApp.config(['$routeProvider', '$httpProvider',
 
     $httpProvider.defaults.headers.common['X-Parse-Application-Id'] = '3Q4JMkdE3vmo8SY8gvndAQwKqd1AjumAV052JhGj';
     $httpProvider.defaults.headers.common['X-Parse-REST-API-Key'] = 'vY8kyfBLYYkBkX50Gd7XntVIs1JSzXc786cZHpwP';
-    $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';  
+    $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
   }
 ]);
-  
-
