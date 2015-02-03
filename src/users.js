@@ -13,7 +13,7 @@ users.controller('UserSignupCtrl', ['$scope', '$http',
         $http.post(API_ROOT+USERS_ROOT, {name:$scope.master.name, email:$scope.master.email, password:$scope.master.password}).
           success(function(data, status, headers, config){
             alert("SWEET");
-          }),
+          }).
           error(function(data, status, headers, config){
             alert("NAW");
           });
