@@ -1,6 +1,6 @@
 var users = angular.module('users', []);
 
-users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore',
+users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore', '$rootScope',
 
   function($scope, $http, $location, $cookieStore) {
     $scope.items = [];
@@ -16,9 +16,9 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
             password: user.password
           }
          }).success(function(data){
-           SESSION_TOKEN = data.sessionToken;
-           SESSION_FIRST_NAME = data.first_name;
-           SESSION_LAST_NAME = data.last_name;
+           $rootScope.session_token = data.sessionToken;
+           $rootScope.first_name = data.first_name;
+           $rootScope.last_name = data.last_name;
             $cookieStore.put("sessionToken", data.sessionToken);
             $cookieStore.put("email", data.email);
             $cookieStore.put("first_name", data.first_name);
