@@ -1,6 +1,6 @@
 <h2>Marketplace</h2>
 <div ng-controller="ItemListCtrl">
   <div ng-repeat="item in items">
-  	<p>{{item.title}} {{item.price | currency}}<p>
+  	<p><a href="#/items/{{item.objectId}}">{{item.title}}</a> {{item.price | currency}}<p>
   </div>
 </div>

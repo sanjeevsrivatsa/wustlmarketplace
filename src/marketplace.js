@@ -6,6 +6,7 @@ var ITEMS = 'Items/'
 
 var marketplaceApp = angular.module('marketplaceApp', [
   'ngRoute',
+  'ngResource',
   'ngCookies',
   'items',
   'users'
