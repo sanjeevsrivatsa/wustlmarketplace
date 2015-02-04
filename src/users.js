@@ -7,10 +7,10 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
 
     $scope.login = function(user) {
       var str = [];
-      str.push(encodeURIComponent("username") + "=" + encodeURIComponent(user.username));
+      str.push(encodeURIComponent("username") + "=" + encodeURIComponent(user.email));
       str.push(encodeURIComponent("password") + "=" + encodeURIComponent(user.password));
       str = str.join("&");
-      alert("Sending: "+API_ROOT+LOGIN_ROOT+str);
+      //alert("Sending: "+API_ROOT+LOGIN_ROOT+str);
       $http.get(API_ROOT+LOGIN_ROOT+str).
         success(function(data, status, headers, config){
           $cookieStore.put("sessionToken", data.sessionToken);
