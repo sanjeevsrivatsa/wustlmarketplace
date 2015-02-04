@@ -1,10 +1,12 @@
 var API_ROOT = 'https://api.parse.com/1/';
 var USERS_ROOT = 'users/';
 var CLASSES_ROOT = 'classes/';
+var LOGIN_ROOT = 'login/'
 var ITEMS = 'Items/'
 
 var marketplaceApp = angular.module('marketplaceApp', [
   'ngRoute',
+  'ngCookies',
   'items',
   'users'
 ]);

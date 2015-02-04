@@ -1,21 +1,33 @@
 var users = angular.module('users', []);
 
-users.controller('UserLoginCtrl', ['$scope', '$http', '$location',
+users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore',
 
-  function($scope, $http, $location) {
+  function($scope, $http, $location, $cookieStore) {
     $scope.items = [];
 
     $scope.login = function(user) {
-        
+      var str = [];
+      str.push(encodeURIComponent("username") + "=" + encodeURIComponent(user.username));
+      str.push(encodeURIComponent("password") + "=" + encodeURIComponent(user.password));
+      str.join("&");
+
+      $http.get(API_ROOT+LOGIN_ROOT+str).
+        success(function(data, status, headers, config){
+          $cookieStore.put("sessionToken", data.sessionToken);
+          alert(JSON.stringify(data));
+        }).
+        error(function(data, status, headers, config){
+          alert(JSON.stringify(data));
+        });
     };
   }
 
 ]);
 
 
-users.controller('UserSignupCtrl', ['$scope', '$http', '$location',
+users.controller('UserSignupCtrl', ['$scope', '$http', '$location', '$cookieStore',
 
-  function($scope, $http, $location) {
+  function($scope, $http, $location, $cookieStore) {
     $scope.items = [];
     $scope.master = {};
     $scope.signup = function(user) {
