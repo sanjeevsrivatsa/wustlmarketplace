@@ -1,6 +1,17 @@
 var users = angular.module('users', []);
 
-users.controller('UserLoginCtrl');
+users.controller('UserLoginCtrl', ['$scope', '$http', '$location',
+
+  function($scope, $http, $location) {
+    $scope.items = [];
+
+    $scope.login = function(user) {
+        
+    };
+  }
+
+]);
+
 
 users.controller('UserSignupCtrl', ['$scope', '$http', '$location',
 
