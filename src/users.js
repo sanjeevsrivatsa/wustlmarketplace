@@ -2,7 +2,7 @@ var users = angular.module('users', []);
 
 users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore', '$rootScope',
 
-  function($scope, $http, $location, $cookieStore) {
+  function($scope, $http, $location, $cookieStore, $rootScope) {
     $scope.items = [];
 
     $scope.login = function(user) {
