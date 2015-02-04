@@ -9,7 +9,7 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
       var str = [];
       str.push(encodeURIComponent("username") + "=" + encodeURIComponent(user.username));
       str.push(encodeURIComponent("password") + "=" + encodeURIComponent(user.password));
-      str.join("&");
+      str = str.join("&");
 
       $http.get(API_ROOT+LOGIN_ROOT+str).
         success(function(data, status, headers, config){
