@@ -7,11 +7,7 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
 
     $scope.login = function(user) {
       var str = [];
-      str.push(encodeURIComponent("username") + "=" + encodeURIComponent(user.email));
-      str.push(encodeURIComponent("password") + "=" + encodeURIComponent(user.password));
-      str = encodeURIComponent(str.join("&"));
-      //alert("Sending: "+API_ROOT+LOGIN_ROOT+str);
-      var param = "username="+user.email+", password="+user.password;
+
       $http({
         method: 'GET',
         url: API_ROOT+LOGIN_ROOT,
@@ -20,20 +16,18 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
             password: user.password
           }
          }).success(function(data){
+           SESSION_TOKEN = data.sessionToken;
+           SESSION_FIRST_NAME = data.first_name;
+           SESSION_LAST_NAME = data.last_name;
             $cookieStore.put("sessionToken", data.sessionToken);
-            alert(JSON.stringify(data));
+            $cookieStore.put("email", data.email);
+            $cookieStore.put("first_name", data.first_name);
+            $cookieStore.put("last_name", data.last_name);
+            //alert(JSON.stringify(data));
+            $location.path('/');
         }).error(function(data){
             alert(JSON.stringify(data));
         });
-
-      // $http.get(API_ROOT+LOGIN_ROOT+str).
-      //   success(function(data, status, headers, config){
-      //     $cookieStore.put("sessionToken", data.sessionToken);
-      //     alert(JSON.stringify(data));
-      //   }).
-      //   error(function(data, status, headers, config){
-      //     alert(JSON.stringify(data));
-      //   });
     };
   }
 

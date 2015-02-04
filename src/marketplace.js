@@ -4,6 +4,10 @@ var CLASSES_ROOT = 'classes/';
 var LOGIN_ROOT = 'login/'
 var ITEMS = 'Items/'
 
+var SESSION_TOKEN = '';
+var SESSION_FIRST_NAME = '';
+var SESSION_LAST_NAME = '';
+
 var marketplaceApp = angular.module('marketplaceApp', [
   'ngRoute',
   'ngCookies',
