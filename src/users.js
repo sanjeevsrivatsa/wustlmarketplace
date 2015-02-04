@@ -9,16 +9,28 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
       var str = [];
       str.push(encodeURIComponent("username") + "=" + encodeURIComponent(user.email));
       str.push(encodeURIComponent("password") + "=" + encodeURIComponent(user.password));
-      str = str.join("&");
+      str = encodeURIComponent(str.join("&"));
       //alert("Sending: "+API_ROOT+LOGIN_ROOT+str);
-      $http.get(API_ROOT+LOGIN_ROOT+str).
-        success(function(data, status, headers, config){
-          $cookieStore.put("sessionToken", data.sessionToken);
-          alert(JSON.stringify(data));
-        }).
-        error(function(data, status, headers, config){
-          alert(JSON.stringify(data));
+      var param = "username="+user.email+", password="+user.password;
+      $http({
+        method: 'GET',
+        url: API_ROOT+LOGIN_ROOT,
+        params: param,
+         }).success(function(data){
+            $cookieStore.put("sessionToken", data.sessionToken);
+            alert(JSON.stringify(data));
+        }).error(function(){
+            alert(JSON.stringify(data));
         });
+
+      // $http.get(API_ROOT+LOGIN_ROOT+str).
+      //   success(function(data, status, headers, config){
+      //     $cookieStore.put("sessionToken", data.sessionToken);
+      //     alert(JSON.stringify(data));
+      //   }).
+      //   error(function(data, status, headers, config){
+      //     alert(JSON.stringify(data));
+      //   });
     };
   }
 
