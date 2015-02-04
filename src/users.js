@@ -2,7 +2,7 @@ var users = angular.module('users', []);
 
 users.controller('UserLoginCtrl');
 
-users.controller('UserSignupCtrl', ['$scope', '$http',
+users.controller('UserSignupCtrl', ['$scope', '$http', '$location',
 
   function($scope, $http) {
     $scope.items = [];
@@ -13,6 +13,7 @@ users.controller('UserSignupCtrl', ['$scope', '$http',
         $http.post(API_ROOT+USERS_ROOT, {first_name:$scope.master.first_name, last_name:$scope.master.last_name, display_name:$scope.master.display_name, username:$scope.master.email, email:$scope.master.email, password:$scope.master.password}).
           success(function(data, status, headers, config){
             //alert(JSON.stringify(data));
+            $location.path('login');
           }).
           error(function(data, status, headers, config){
             //alert(JSON.stringify(data));
