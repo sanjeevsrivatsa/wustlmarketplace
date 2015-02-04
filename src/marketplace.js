@@ -3,7 +3,6 @@ var USERS_ROOT = 'users/';
 var CLASSES_ROOT = 'classes/';
 var LOGIN_ROOT = 'login/'
 var ITEMS = 'Items/'
-var x = 3;
 
 var marketplaceApp = angular.module('marketplaceApp', [
   'ngRoute',
