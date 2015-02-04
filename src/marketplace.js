@@ -9,7 +9,7 @@ var marketplaceApp = angular.module('marketplaceApp', [
   'users'
 ]);
 
-marketplaceApp.config(['$routeProvider', '$httpProvider',
+marketplaceApp.config(['$routeProvider', '$httpProvider', '$locationProvider',
   function($routeProvider, $httpProvider) {
     $routeProvider.
     when('/login', {
