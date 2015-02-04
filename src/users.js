@@ -15,11 +15,14 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
       $http({
         method: 'GET',
         url: API_ROOT+LOGIN_ROOT,
-        params: param,
+        params: {
+            username: user.email,
+            password: user.password
+          }
          }).success(function(data){
             $cookieStore.put("sessionToken", data.sessionToken);
             alert(JSON.stringify(data));
-        }).error(function(){
+        }).error(function(data){
             alert(JSON.stringify(data));
         });
 
