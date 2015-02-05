@@ -1,10 +1,9 @@
-var api = angular.module('api',
-	['ngResource']);
+var api = angular.module('api', []);
 
-api.factory('Items', ['$resource', function($resource) {
+api.factory('Item', ['$resource', function($resource) {
 	return $resource(API_ROOT+CLASSES_ROOT+ITEMS+':objectId', 
 		{objectId: '@objectId'},
 		{
-			'update': {method: 'PUT'}
+			'query': {method: 'GET'}
 		});
 }]);
