@@ -9,7 +9,8 @@ var marketplaceApp = angular.module('marketplaceApp', [
   'ngResource',
   'ngCookies',
   'items',
-  'users'
+  'users',
+  'api'
 ]);
 
 marketplaceApp.config(['$routeProvider', '$httpProvider', '$locationProvider',
@@ -27,7 +28,7 @@ marketplaceApp.config(['$routeProvider', '$httpProvider', '$locationProvider',
       templateUrl: 'partials/item-list.html',
       controller: 'ItemListCtrl'
     }).
-    when('/items/:itemId', {
+    when('/items/:objectId', {
       templateUrl: 'partials/item-detail.html',
       controller: 'ItemDetailCtrl'
     }).

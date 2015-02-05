@@ -1,6 +1,6 @@
 var PAGE_SIZE = 25;
 
-var items = angular.module('items', []);
+var items = angular.module('items', ['api']);
 
 items.controller('ItemListCtrl', ['$scope', '$http', 
   function($scope, $http) {
@@ -12,16 +12,9 @@ items.controller('ItemListCtrl', ['$scope', '$http',
   }
 ]);
 
-items.controller('ItemDetailCtrl', ['$scope', '$http', '$routeParams', 
-  function($scope, $http, $routeParams) {
-    $scope.item = {};
-    $http.get(API_ROOT + CLASSES_ROOT + ITEMS + $routeParams.itemId).
-      success(function(data, status, headers, config) {
-        $scope.item = data;
-      }).
-      error(function(data, status, headers, config) {
-        console.log(data);
-      });
+items.controller('ItemDetailCtrl', ['$scope', 'Items', '$routeParams', 
+  function($scope, Items, $routeParams) {
+    $scope.item = Items.get({objectId: $routeParams.objectId});
   }
 ]);
 
