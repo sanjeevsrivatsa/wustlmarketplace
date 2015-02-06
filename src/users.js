@@ -16,13 +16,13 @@ users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore
             password: user.password
           }
          }).success(function(data){
-           $rootScope.session_token = data.sessionToken;
-           $rootScope.first_name = data.first_name;
-           $rootScope.last_name = data.last_name;
+           $rootScope.sessionToken = data.sessionToken;
+           $rootScope.firstName = data.firstName;
+           $rootScope.lastName = data.lastName;
             $cookieStore.put("sessionToken", data.sessionToken);
             $cookieStore.put("email", data.email);
-            $cookieStore.put("first_name", data.first_name);
-            $cookieStore.put("last_name", data.last_name);
+            $cookieStore.put("first_name", data.firstName);
+            $cookieStore.put("last_name", data.lastName);
             //alert(JSON.stringify(data));
             $location.path('/');
         }).error(function(data){
@@ -41,10 +41,9 @@ users.controller('UserSignupCtrl', ['$scope', '$http', '$location', '$cookieStor
     $scope.master = {};
     $scope.signup = function(user) {
         $scope.master = angular.copy(user);
-        $scope.master.toString();
-        $http.post(API_ROOT+USERS_ROOT, {first_name:$scope.master.first_name, last_name:$scope.master.last_name, display_name:$scope.master.display_name, username:$scope.master.email, email:$scope.master.email, password:$scope.master.password}).
+        alert(user.firstName);
+        $http.post(API_ROOT+USERS_ROOT, {firstName:$scope.master.firstName, lastName:$scope.master.lastName, displayName:$scope.master.displayName, username:$scope.master.email, email:$scope.master.email, password:$scope.master.password}).
           success(function(data, status, headers, config){
-            //alert(JSON.stringify(data));
             $location.path('login');
           }).
           error(function(data, status, headers, config){
@@ -52,11 +51,7 @@ users.controller('UserSignupCtrl', ['$scope', '$http', '$location', '$cookieStor
           });
     };
 
-    /*$http.get(API_ROOT + CLASSES_ROOT + ITEMS).
-      success(function(data, status, headers, config) {
-        $scope.items = data.results;
-      });*/
-    $scope.reset = function(){
+    $scope.reset = function() {
       $scope.user = angular.copy($scope.master);
     }
     $scope.reset();
