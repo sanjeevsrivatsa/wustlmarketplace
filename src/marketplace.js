@@ -1,8 +1,39 @@
 var API_ROOT = 'https://api.parse.com/1/';
 var USERS_ROOT = 'users/';
 var CLASSES_ROOT = 'classes/';
-var LOGIN_ROOT = 'login/'
-var ITEMS = 'Items/'
+var LOGIN_ROOT = 'login/';
+var ITEMS = 'Items/';
+var COUNTER = 'Counter/'
+
+var ALL_CATEGORIES = 'all';
+
+var CATEGORIES = [
+  'all',
+  'apartments',
+  'appliances',
+  'bikes',
+  'books',
+  'cars',
+  'electronics',
+  'furniture',
+  'miscellaneous',
+  'wanted',
+  'free',
+];
+
+var CATEGORY_COUNT_IDS = {
+  'all': 'uxqQiCY7Uh',
+  'apartments': null,
+  'appliances': null,
+  'bikes': null,
+  'books': null,
+  'cars': null,
+  'electronics': '5hHcz8zgnQ',
+  'furniture': null,
+  'miscellaneous': null,
+  'wanted': null,
+  'free': null,
+};
 
 var marketplaceApp = angular.module('marketplaceApp', [
   'ngRoute',

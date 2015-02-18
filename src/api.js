@@ -8,6 +8,12 @@ api.factory('Item', ['$resource', function($resource) {
 		});
 }]);
 
+api.factory('Counter', ['$resource', function($resource) {
+	return $resource(API_ROOT+CLASSES_ROOT+COUNTER+':objectId', 
+		{objectId: '@objectId'},
+		null);
+}]);
+
 api.factory('Login', ['$resource', function($resource) {
 	return $resource(API_ROOT+LOGIN_ROOT,
 		null,

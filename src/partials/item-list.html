@@ -1,7 +1,7 @@
 <h2>Marketplace</h2>
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2 isotope">
+    <!-- <div class="col-md-8 col-md-offset-2 isotope">
       <a href = "#/items/{{item.objectId}}" class="thumbnail item" ng-repeat="item in items.results">
         <img src="img/150x150.jpg">
         <div class="caption">
@@ -9,9 +9,32 @@
           <p>{{item.price | currency}}</p>
         </div>
       </a>
-    </div>
-    <!-- <div ng-repeat="item in items.results">
-    	<p><a href="#/items/{{item.objectId}}">{{item.title}}</a> {{item.price | currency}}<p>
     </div> -->
+    <div class="col-md-2">
+      <div ng-repeat="category in categories">
+        <p><a href="#/items?category={{category}}">{{category}}</a></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6">Details</div>
+        <div class="col-md-2">Price</div>
+      </div>
+      <div ng-repeat="item in items.results">
+        <div class="row">
+      	 <a class="col-md-6" href="#/items/{{item.objectId}}">{{item.title}}</a> 
+         <div class="col-md-2">{{item.price | currency}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <a class="col-md-1" ng-show="displayPrev" href="#/items?category={{currentCategory}}&p=1">First</a>
+    <a class="col-md-1" ng-show="displayPrev" href="#/items?category={{currentCategory}}&p={{p-1}}">Prev</a>
+    <div ng-repeat="pageNumber in displayedPages">
+      <a class="col-md-1 disabled" href="#/items?category={{currentCategory}}&p={{pageNumber}}">{{pageNumber}}</a>
+    </div> 
+    <a class="col-md-1" ng-show="displayNext" href="#/items?category={{currentCategory}}&p={{p+1}}">Next</a>
+    <a class="col-md-1" ng-show="displayNext" href="#/items?category={{currentCategory}}&p={{totalPages}}">Last</a>
   </div>
 </div>
