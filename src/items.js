@@ -1,4 +1,4 @@
-var PAGE_SIZE = 1;
+var PAGE_SIZE = 5;
 
 var items = angular.module('items', []);
 
@@ -7,24 +7,52 @@ items.controller('ItemListCtrl', ['$scope', 'Item', 'Counter', '$routeParams',
     $scope.categories = CATEGORIES;
     $scope.currentCategory = $routeParams.category ? $routeParams.category : ALL_CATEGORIES;
 
-    $scope.p = $routeParams.p ? parseInt($routeParams.p) : 1;
-    Counter.get({objectId: CATEGORY_COUNT_IDS[$scope.currentCategory]}, function(response) {
-      $scope.totalPages = Math.ceil(response.value/PAGE_SIZE);
-      $scope.displayedPages = getDisplayedPages($scope.p, $scope.totalPages);
-      $scope.displayPrev = $scope.p != 1;
-      $scope.displayNext = $scope.p != $scope.totalPages;
-    });
+    //$scope.p = $routeParams.p ? parseInt($routeParams.p) : 1;
     
-    var itemParams = {
-      skip: getPageOffset($scope.p),
+    // Counter.get({objectId: CATEGORY_COUNT_IDS[$scope.currentCategory]}, function(response) {
+    //   $scope.totalPages = Math.ceil(response.value/PAGE_SIZE);
+    //   $scope.displayedPages = getDisplayedPages($scope.p, $scope.totalPages);
+    //   $scope.displayPrev = $scope.p != 1;
+    //   $scope.displayNext = $scope.p != $scope.totalPages;
+    // });
+    
+    var queryParams = {
+      skip: 0,
       limit: PAGE_SIZE
     };
     if ($scope.currentCategory !== ALL_CATEGORIES) {
-      itemParams.where = {
+      queryParams.where = {
         category: $scope.currentCategory
       };
     }
-    $scope.items = Item.query(itemParams);
+
+    Item.query(queryParams, function(response) {
+      $scope.items = response.results;
+    });
+
+    var infiniteScrollHandler = function () {
+      if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+        $scope.loadAdditionalItems();
+      }
+    }
+
+    // Note this may not be the best way to do this: http://ejohn.org/blog/learning-from-twitter/
+    $(window).scroll(infiniteScrollHandler);
+    
+    $scope.loadAdditionalItems = function() {
+      queryParams.skip += PAGE_SIZE;
+      Item.query(queryParams, function(response) {
+        if (response.results.length == 0) {
+          $scope.items.push({title: 'There are no more items to show.'});
+          $(window).off('scroll', infiniteScrollHandler);
+        } else {
+          response.results.forEach(function(item) {
+            $scope.items.push(item);
+          });
+        }
+      });  
+    };
+
   }
 ]);
 
@@ -33,10 +61,6 @@ items.controller('ItemDetailCtrl', ['$scope', 'Item', '$routeParams',
     $scope.item = Item.get({objectId: $routeParams.objectId});
   }
 ]);
-
-function getPageOffset(pageNumber) {
-  return (pageNumber-1)*PAGE_SIZE;
-}
 
 /*
   Note that pages are in the range [1, totalPages]

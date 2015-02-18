@@ -20,7 +20,7 @@
         <div class="col-md-6">Details</div>
         <div class="col-md-2">Price</div>
       </div>
-      <div ng-repeat="item in items.results">
+      <div ng-repeat="item in items">
         <div class="row">
       	 <a class="col-md-6" href="#/items/{{item.objectId}}">{{item.title}}</a> 
          <div class="col-md-2">{{item.price | currency}}</div>
@@ -28,7 +28,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <!-- pagination <div class="row">
     <a class="col-md-1" ng-show="displayPrev" href="#/items?category={{currentCategory}}&p=1">First</a>
     <a class="col-md-1" ng-show="displayPrev" href="#/items?category={{currentCategory}}&p={{p-1}}">Prev</a>
     <div ng-repeat="pageNumber in displayedPages">
@@ -36,5 +36,5 @@
     </div> 
     <a class="col-md-1" ng-show="displayNext" href="#/items?category={{currentCategory}}&p={{p+1}}">Next</a>
     <a class="col-md-1" ng-show="displayNext" href="#/items?category={{currentCategory}}&p={{totalPages}}">Last</a>
-  </div>
+  </div> -->
 </div>

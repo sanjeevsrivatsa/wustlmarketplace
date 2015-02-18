@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "WUMarketplace": {
+            "applicationId": "3Q4JMkdE3vmo8SY8gvndAQwKqd1AjumAV052JhGj", 
+            "masterKey": "9MrClB0HwGWk6XDWB7E0hSsDHUP5ROPsieT3mZp3"
+        }, 
+        "_default": {
+            "link": "WUMarketplace"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.13"
+    }
+}
