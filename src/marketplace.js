@@ -43,6 +43,7 @@ var marketplaceApp = angular.module('marketplaceApp', [
   'ngCookies',
   'items',
   'users',
+  'upload',
   'api'
 ]);
 
@@ -56,6 +57,10 @@ marketplaceApp.config(['$routeProvider', '$httpProvider', '$locationProvider',
     when('/signup', {
       templateUrl: 'partials/user-signup.html',
       controller: 'UserSignupCtrl'
+    }).
+    when('/upload', {
+      templateUrl: 'partials/upload_2.html',
+      controller: 'UploadCtrl'
     }).
     when('/items', {
       templateUrl: 'partials/item-list.html',
