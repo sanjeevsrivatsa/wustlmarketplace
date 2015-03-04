@@ -29,11 +29,11 @@ h1, h2{
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   font-size: 100%;
-  color: white;
+  color: gray;
   border-style: solid;
-  border-color: white;
+  border-color: gray;
   border-width: 4px;
-  background-color: transparent;
+  background-color: #ecf0f1;
   cursor:pointer;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
@@ -67,7 +67,7 @@ h1, h2{
 }
 
 .wum-button:hover {
-  background-color: white;
+  background-color: lightgray;
   color:grey;
 }
 
@@ -187,13 +187,42 @@ h1, h2{
 }
 
 .items_rows .row {
-  border-style: solid;
-  border-width: 1px;
+  /*border-style: solid;
+  border-width: 1px;*/
+  background-color: white;
   margin-bottom: 10px;
+  padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.items_rows p {
+  padding-top: 12px;
+}
+
+.items_rows a {
+  margin-top: 10px;
 }
 
 .categories_div {
   background-color: lightgray;
   padding-left: 5px;
+}
+
+.category_buttons_row {
+  text-align: center;
+  /*width: 100%;*/
+  margin-bottom: 20px;
+}
+
+.category_buttons_row button {
+  margin-botton: 5px;
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  padding: 0 12px;
+}
+
+.category_buttons {
+  border-bottom:1px solid gray;
+
 }
