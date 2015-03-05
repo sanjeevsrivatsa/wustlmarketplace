@@ -1,65 +1,39 @@
 var users = angular.module('users', []);
 
-users.controller('UserLoginCtrl', ['$scope', '$http', '$location', '$cookieStore', '$rootScope',
+users.controller('UserLoginCtrl', ['$scope', 'Login', '$location', '$cookieStore', '$rootScope',
 
-  function($scope, $http, $location, $cookieStore, $rootScope) {
-    $scope.items = [];
+  function($scope, Login, $location, $cookieStore, $rootScope) {
+    $scope.user = {};
 
-    $scope.login = function(user) {
-      var str = [];
-
-      $http({
-        method: 'GET',
-        url: API_ROOT+LOGIN_ROOT,
-        params: {
-            username: user.email,
-            password: user.password
-          }
-         }).success(function(data){
-           $rootScope.session_token = data.sessionToken;
-           $rootScope.first_name = data.first_name;
-           $rootScope.last_name = data.last_name;
-            $cookieStore.put("sessionToken", data.sessionToken);
-            $cookieStore.put("email", data.email);
-            $cookieStore.put("first_name", data.first_name);
-            $cookieStore.put("last_name", data.last_name);
-            //alert(JSON.stringify(data));
-            $location.path('/');
-        }).error(function(data){
-            alert(JSON.stringify(data));
-        });
+    $scope.login = function() {
+      Login.login($scope.user, function(response) {
+        $rootScope.sessionToken = response.sessionToken;
+        $rootScope.firstName = response.firstName;
+        $rootScope.lastName = response.lastName;
+        $cookieStore.put("sessionToken", response.sessionToken);
+        $cookieStore.put("email", response.email);
+        $cookieStore.put("firstName", response.firstName);
+        $cookieStore.put("lastName", response.lastName);
+        $location.path('/');
+      });
     };
   }
 
 ]);
 
 
-users.controller('UserSignupCtrl', ['$scope', '$http', '$location', '$cookieStore',
+users.controller('UserSignupCtrl', ['$scope', 'User', '$location', '$cookieStore',
 
-  function($scope, $http, $location, $cookieStore) {
-    $scope.items = [];
-    $scope.master = {};
-    $scope.signup = function(user) {
-        $scope.master = angular.copy(user);
-        $scope.master.toString();
-        $http.post(API_ROOT+USERS_ROOT, {first_name:$scope.master.first_name, last_name:$scope.master.last_name, display_name:$scope.master.display_name, username:$scope.master.email, email:$scope.master.email, password:$scope.master.password}).
-          success(function(data, status, headers, config){
-            //alert(JSON.stringify(data));
-            $location.path('login');
-          }).
-          error(function(data, status, headers, config){
-            //alert(JSON.stringify(data));
-          });
+  function($scope, User, $location, $cookieStore) {
+    $scope.user = {};
+
+    $scope.signup = function() {
+        $scope.user.username = $scope.user.email;
+        User.signup($scope.user, function(response) {
+          console.log(response);
+          $location.path('login');
+        });
     };
-
-    /*$http.get(API_ROOT + CLASSES_ROOT + ITEMS).
-      success(function(data, status, headers, config) {
-        $scope.items = data.results;
-      });*/
-    $scope.reset = function(){
-      $scope.user = angular.copy($scope.master);
-    }
-    $scope.reset();
   }
 
 ]);

@@ -10,7 +10,10 @@
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
 
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+  background-color: #ecf0f1;
+}
 
 h1, h2{
   font-family: 'Montserrat', sans-serif;
@@ -26,11 +29,11 @@ h1, h2{
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   font-size: 100%;
-  color: white;
+  color: gray;
   border-style: solid;
-  border-color: white;
+  border-color: gray;
   border-width: 4px;
-  background-color: transparent;
+  background-color: #ecf0f1;
   cursor:pointer;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
@@ -64,7 +67,7 @@ h1, h2{
 }
 
 .wum-button:hover {
-  background-color: white;
+  background-color: lightgray;
   color:grey;
 }
 
@@ -90,4 +93,136 @@ h1, h2{
   white-space:nowrap;
   width:1%;
   display: table-cell;
+}
+
+.new_form{
+    font-family: 'Open Sans Condensed', arial, sans;
+    padding: 30px;
+    background: #FFFFFF;
+    margin-top: 30px;
+    /*margin: 50px auto;*/
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+
+}
+.new_form h2{
+    background: #4D4D4D;
+    text-transform: uppercase;
+    /*font-family: 'Open Sans Condensed', sans-serif;*/
+    color: #797979;
+    /*font-size: 18px;*/
+    font-weight: 100;
+    padding: 20px;
+    margin: -30px -30px 30px -30px;
+}
+
+.new_form input[type="text"],
+.new_form input[type="date"],
+.new_form input[type="datetime"],
+.new_form input[type="email"],
+.new_form input[type="number"],
+.new_form input[type="search"],
+.new_form input[type="time"],
+.new_form input[type="url"],
+.new_form input[type="password"],
+.new_form input[type="file"],
+.new_form textarea
+{
+  /*border: none !important;*/
+  -webkit-appearance: none;
+  /*-webkit-border-radius: 0px;*/
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+}
+
+.new_form select
+{
+  /*border: none !important;*/
+  -webkit-appearance: none;
+  /*-webkit-border-radius: 0px;*/
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+}
+
+.new_form input[type="submit"]
+{
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
+.items_rows .row {
+  /*border-style: solid;
+  border-width: 1px;*/
+  background-color: white;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.items_rows p {
+  padding-top: 12px;
+}
+
+.items_rows a {
+  margin-top: 10px;
+}
+
+.categories_div {
+  background-color: lightgray;
+  padding-left: 5px;
+}
+
+.category_buttons_row {
+  text-align: center;
+  /*width: 100%;*/
+  margin-bottom: 20px;
+}
+
+.category_buttons_row button {
+  margin-botton: 5px;
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  padding: 0 12px;
+}
+
+.category_buttons {
+  border-bottom:1px solid gray;
+
 }

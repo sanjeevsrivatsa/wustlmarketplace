@@ -21,13 +21,18 @@
     <!-- <link href="carousel.css" rel="stylesheet"> -->
     <!-- <link href="custom.css" rel="stylesheet"> -->
     <link href="bootstrap/css/custom.css" rel="stylesheet">
-    <script src="angular.min.js"></script>
-    <script src="angular-route.min.js"></script>
-    <script src="angular-resource.min.js"></script>
-    <script src="angular-cookies.min.js"></script>
+    <link href="bootstrap/css/dropzone.css" rel="stylesheet">
+    <script src="lib/dropzone.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <script src="lib/angular-resource.min.js"></script>
+    <script src="lib/angular-cookies.min.js"></script>
+    <script src="lib/isotope.pkgd.min.js"></script>
     <script src="marketplace.js"></script>
     <script src="items.js"></script>
     <script src="users.js"></script>
+    <script src="upload.js"></script>
+    <script src="api.js"></script>
     <title>WU Marketplace</title>
   </head>
   <body>
@@ -46,7 +51,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#signup">{{first_name ? first_name : 'Login'}}</a></li>
+            <li><a href="#login">{{firstName ? firstName : 'Login'}}</a></li>
             <li><a href="#">Marketplace</a></li>
             <li class="active"><a href="./">Logout<span class="sr-only">(current)</span></a></li>
           </ul>
@@ -64,13 +69,26 @@
     </nav>
     <!--END NavBar-->
 
-    <div ng-view></div>
+    <div ng-view class="container"></div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="bootstrap/js/docs.min.js"></script>
+    <script type="text/javascript">
+      //alert("HI");
+      $(function(){
+        var $container = $('.isotope');
+        //init
+        $container.isotope({
+          //options
+          itemSelector: '.item',
+          layoutMode: 'fitRows'
+        });
+      });
+    </script>
+
+    <!-- <script src="bootstrap/js/docs.min.js"></script> -->
   </body>
 </html>
