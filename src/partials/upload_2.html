@@ -1,10 +1,10 @@
 <!-- HTML Form modified from ninjamonk on bootsnipp -->
-<div class="container new_form">
+<div class="container">
   <div class="row">
-      <div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+      <div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2 new_form">
         <div role="form">
           <h2>Create Listing <small><small>Got something to sell?</small></small></h2>
-          <hr class="colorgraph">
+          <!-- <hr class="colorgraph"> -->
           <div class="form-group">
             <input type="text" ng-model="listing.title" name="title" id="title" class="form-control input-lg" placeholder="Listing Title" tabindex="1">
           </div>
@@ -22,7 +22,7 @@
           <div class="form-group">
             <input name="file" type="file" ng-model="listing.photo" multiple />
           </div>
-          <hr class="colorgraph">
+          <!-- <hr class="colorgraph"> -->
           <div class="row">
             <div class="col-md-6"><input type="submit" ng-click="upload(listing)" value="Post!" class="btn btn-primary btn-block btn-lg" tabindex="4"></div>
           </div>
