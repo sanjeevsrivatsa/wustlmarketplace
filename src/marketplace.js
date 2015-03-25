@@ -48,7 +48,7 @@ var marketplaceApp = angular.module('marketplaceApp', [
 ]);
 
 marketplaceApp.config(['$routeProvider', '$httpProvider', '$locationProvider',
-  function($routeProvider, $httpProvider) {
+  function($routeProvider, $httpProvider, $locationProvider, $cookies) {
     $routeProvider.
     when('/login', {
       templateUrl: 'partials/user-login.html',
@@ -77,5 +77,23 @@ marketplaceApp.config(['$routeProvider', '$httpProvider', '$locationProvider',
     $httpProvider.defaults.headers.common['X-Parse-Application-Id'] = '3Q4JMkdE3vmo8SY8gvndAQwKqd1AjumAV052JhGj';
     $httpProvider.defaults.headers.common['X-Parse-REST-API-Key'] = 'vY8kyfBLYYkBkX50Gd7XntVIs1JSzXc786cZHpwP';
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+  }
+]);
+
+marketplaceApp.controller('MarketplaceCtrl', ['$rootScope', '$cookieStore', '$http', '$window',
+  function($rootScope, $cookieStore, $http, $window) {
+    $rootScope.currentUserId = $cookieStore.get('currentUserId');
+    $rootScope.firstName = $cookieStore.get('firstName');
+    var sessionToken = $cookieStore.get('sessionToken');
+    if (sessionToken) {
+        $http.defaults.headers.common['X-Parse-Session-Token'] = sessionToken;
+    }
+
+    $rootScope.logout = function() {
+      $cookieStore.remove('currentUserId');
+      $cookieStore.remove('firstName');
+      $cookieStore.remove('sessionToken');
+      $window.location.reload();
+    }
   }
 ]);

@@ -1,4 +1,4 @@
-var PAGE_SIZE = 5;
+var PAGE_SIZE = 10;
 
 var items = angular.module('items', []);
 
@@ -56,9 +56,26 @@ items.controller('ItemListCtrl', ['$scope', 'Item', 'Counter', '$routeParams',
   }
 ]);
 
-items.controller('ItemDetailCtrl', ['$scope', 'Item', '$routeParams', 
-  function($scope, Item, $routeParams) {
-    $scope.item = Item.get({objectId: $routeParams.objectId});
+items.controller('ItemDetailCtrl', ['$rootScope', '$scope', 'Item', '$routeParams', '$location',
+  function($rootScope, $scope, Item, $routeParams, $location) {
+    $scope.owner = false;
+    $scope.item = {};
+    $scope.categories = CATEGORIES;
+
+    Item.get({objectId: $routeParams.objectId}, function(response) {
+      $scope.owner = response.sellerId === $rootScope.currentUserId;
+      $scope.item.objectId = response.objectId;
+      $scope.item.category = response.category;
+      $scope.item.description = response.description;
+      $scope.item.title = response.title;
+      $scope.item.price = response.price;
+    });
+
+    $scope.update = function() {
+      Item.update($scope.item, function(response) {
+        $location.path('/');
+      });
+    }
   }
 ]);
 

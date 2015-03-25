@@ -1,16 +1,29 @@
 var listing = angular.module('upload', []);
 
-listing.controller('UploadCtrl', ['$scope', '$location', '$cookieStore', '$rootScope', 'Item',
+listing.controller('UploadCtrl', ['$scope', '$location', '$cookies', '$rootScope', 'Item',
 
-  function($scope, $location, $cookieStore, $rootScope, Item) {
-    var myDropzone = new Dropzone("#drop", { url: "/file/post"});
+  function($scope, $location, $cookies, $rootScope, Item) {
+    $scope.listing = {};
     $scope.categories = CATEGORIES;
     $scope.upload = function() {
-        console.log($scope.listing);
+        if (!$rootScope.loggedIn) {
+          alert('You must be logged in to post items.');
+          $location.path('/');
+        }
+        var ACL = {};
+        ACL[$rootScope.userId] = {
+          'read': true,
+          'write': true
+        };
+        ACL["*"] = {
+          'read': true
+        };
+        $scope.listing.ACL = ACL;
+        $scope.listing.sellerId = $rootScope.userId;
         Item.post($scope.listing, function(response) {
           console.log(response);
+          $location.path('/');
         });
-        alert("~");
     };
   }
 

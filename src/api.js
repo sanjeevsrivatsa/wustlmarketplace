@@ -5,7 +5,8 @@ api.factory('Item', ['$resource', function($resource) {
 		{objectId: '@objectId'},
 		{
 			'query': {method: 'GET'},
-			'post': {method: 'POST'}
+			'post': {method: 'POST'},
+			'update': {method: 'PUT'}
 		});
 }]);
 
