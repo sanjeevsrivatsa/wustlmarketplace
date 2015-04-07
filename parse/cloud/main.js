@@ -1,44 +1,17 @@
-var CATEGORY_COUNT_IDS = {
-  'all': 'uxqQiCY7Uh',
-  'apparel': 'EGRYCZ1D7D',
-  'appliances': 'UJQOo0cfYg',
-  'bikes': 'a2y1OuLCB8',
-  'books': 'S6ELlcDjUx',
-  'cars': 'pciWtJaYM2',
-  'electronics': '5hHcz8zgnQ',
-  'furniture': 'gQew90AYUq',
-  'housing': 'VtekKqwXsy',
-  'miscellaneous': 'HryWB8LtW4',
-  'wanted': '0fEnCxfSVL',
-  'free': 'sD0xhLj3Dt',
-};
-
-var ALL_CATEGORIES = 'all';
+var _ = require("underscore");
+var STOP_WORDS = ["the", "in", "and"];
 
 Parse.Cloud.beforeSave("Items", function(request, response) {
   var item = request.object;
-  //if (!item.id) {
-    query = new Parse.Query("Counter");
-    query.get(CATEGORY_COUNT_IDS[item.get("category")], {
-    	success: function(counter) {
-    	  console.log(counter);
-    	  counter.increment("value");
-    	  counter.save();
-    	},
-    	error: function(error) {
-    		console.error(error.code + " : " + error.message);
-    	}
-    });
-    query.get(CATEGORY_COUNT_IDS[ALL_CATEGORIES], {
-    	success: function(counter) {
-    	  console.log(counter);
-    	  counter.increment("value");
-    	  counter.save();
-    	},
-    	error: function(error) {
-    		console.error(error.code + " : " + error.message);
-    	}
-    });
-  //}
+
+  var toLowerCase = function(w) { return w.toLowerCase(); };
+  var isValidWord = function(w) { return w.match(/^\w+$/) && ! _.contains(STOP_WORDS, w); };
+
+  var words = item.get("title").split(/\b/);
+  words = _.map(words, toLowerCase);
+  words = _.filter(words, isValidWord);
+  words = _.uniq(words);
+
+  item.set("words", words);
   response.success();
 });

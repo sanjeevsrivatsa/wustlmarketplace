@@ -80,13 +80,14 @@ marketplaceApp.config(['$routeProvider', '$httpProvider', '$locationProvider',
   }
 ]);
 
-marketplaceApp.controller('MarketplaceCtrl', ['$rootScope', '$cookieStore', '$http', '$window',
-  function($rootScope, $cookieStore, $http, $window) {
+marketplaceApp.controller('MarketplaceCtrl', ['$scope', '$rootScope', '$cookieStore', '$http', '$window', '$location',
+  function($scope, $rootScope, $cookieStore, $http, $window, $location) {
     $rootScope.currentUserId = $cookieStore.get('currentUserId');
     $rootScope.firstName = $cookieStore.get('firstName');
     var sessionToken = $cookieStore.get('sessionToken');
     if (sessionToken) {
         $http.defaults.headers.common['X-Parse-Session-Token'] = sessionToken;
+        $rootScope.loggedIn = true;
     }
 
     $rootScope.logout = function() {
@@ -94,6 +95,11 @@ marketplaceApp.controller('MarketplaceCtrl', ['$rootScope', '$cookieStore', '$ht
       $cookieStore.remove('firstName');
       $cookieStore.remove('sessionToken');
       $window.location.reload();
+    }
+
+    $scope.search = function() {
+      console.log($scope.searchQuery);
+      $window.location.href = "#/items?q="+$scope.searchQuery;
     }
   }
 ]);

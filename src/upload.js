@@ -11,7 +11,7 @@ listing.controller('UploadCtrl', ['$scope', '$location', '$cookies', '$rootScope
           $location.path('/');
         }
         var ACL = {};
-        ACL[$rootScope.userId] = {
+        ACL[$rootScope.currentUserId] = {
           'read': true,
           'write': true
         };
@@ -19,7 +19,7 @@ listing.controller('UploadCtrl', ['$scope', '$location', '$cookies', '$rootScope
           'read': true
         };
         $scope.listing.ACL = ACL;
-        $scope.listing.sellerId = $rootScope.userId;
+        $scope.listing.sellerId = $rootScope.currentUserId;
         Item.post($scope.listing, function(response) {
           console.log(response);
           $location.path('/');

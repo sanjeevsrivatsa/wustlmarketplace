@@ -1,4 +1,4 @@
-var PAGE_SIZE = 10;
+var PAGE_SIZE = 15;
 
 var items = angular.module('items', []);
 
@@ -6,7 +6,7 @@ items.controller('ItemListCtrl', ['$scope', 'Item', 'Counter', '$routeParams',
   function($scope, Item, Counter, $routeParams) {
     $scope.categories = CATEGORIES;
     $scope.currentCategory = $routeParams.category ? $routeParams.category : ALL_CATEGORIES;
-
+    $scope.searchQuery = $routeParams.q;
     //$scope.p = $routeParams.p ? parseInt($routeParams.p) : 1;
     
     // Counter.get({objectId: CATEGORY_COUNT_IDS[$scope.currentCategory]}, function(response) {
@@ -25,7 +25,14 @@ items.controller('ItemListCtrl', ['$scope', 'Item', 'Counter', '$routeParams',
         category: $scope.currentCategory
       };
     }
-
+    if ($scope.searchQuery) {
+      var terms = $scope.searchQuery.split(" ");
+      queryParams.where = {
+        words: {
+          '$all': terms
+        }
+      };
+    }
     Item.query(queryParams, function(response) {
       $scope.items = response.results;
     });
